@@ -10,13 +10,12 @@ import { MailerModule } from '@nestjs-modules/mailer';
     ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
-        host: 'sandbox.smtp.mailtrap.io', //host smtp
-        secure: false, //regras de segurança do serviço smtp
-        port: 587, // porta
+        host: process.env.HOST_EMAIL,
+        secure: false,
+        port: process.env.PORT_EMAIL,
         auth: {
-          //dados do usuário e senha
-          user: 'bee014123e1fb8',
-          pass: '68a618cf9b8840',
+          user: process.env.USERNAME_EMAIL,
+          pass: process.env.PASSWORD_EMAIL,
         },
         ignoreTLS: true,
       },
