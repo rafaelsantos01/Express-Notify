@@ -72,8 +72,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
   }
 }
