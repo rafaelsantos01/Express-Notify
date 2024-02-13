@@ -31,7 +31,8 @@
     "kafkajs": "^2.2.4",
     "nodemailer": "^6.9.9",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "string-width": "^7.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -72,5 +73,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
   }
 }
