@@ -17,18 +17,6 @@ jobs:
         with:
           node-version: '21'
 
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Login Docker Hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-
-      - name: Build docker image
-        run: docker build -t rafaelsantos15/express-notify .
-
-      - name: Push image docker
-        run: docker push rafaelsantos15/express-notify
-
   deploy:
     needs: build
     runs-on: self-hosted
@@ -40,4 +28,4 @@ jobs:
         run: docker rm -f express-notify
 
       - name: Run docker container
-        run: docker run -d -p 3000:3000 -e USERNAME_EMAIL='${{secrets.USERNAME_EMAIL}}' -e SEND_EMAIL_TOPIC_ERROR=${{secrets.SEND_EMAIL_TOPIC_ERROR}} -e APP_KEY_ICARO=${{secrets.APP_KEY_ICARO}} -e PORT_EMAIL=${{secrets.PORT_EMAIL}} -e PASSWORD_EMAIL=${{secrets.PASSWORD_EMAIL}} -e HOST_EMAIL=${{secrets.HOST_EMAIL}} -e EMAIL_SERVICE=${{secrets.EMAIL_SERVICE}} -e BROKERS_KAFKA=${{secrets.BROKERS_KAFKA}} --name express-notify rafaelsantos15/express-notify
+        run: docker run -d -p 3002:3002 -e USERNAME_EMAIL='${{secrets.USERNAME_EMAIL}}' -e SEND_EMAIL_TOPIC_ERROR=${{secrets.SEND_EMAIL_TOPIC_ERROR}} -e APP_KEY_ICARO=${{secrets.APP_KEY_ICARO}} -e PORT_EMAIL=${{secrets.PORT_EMAIL}} -e PASSWORD_EMAIL=${{secrets.PASSWORD_EMAIL}} -e HOST_EMAIL=${{secrets.HOST_EMAIL}} -e EMAIL_SERVICE=${{secrets.EMAIL_SERVICE}} -e BROKERS_KAFKA=${{secrets.BROKERS_KAFKA}} --name express-notify rafaelsantos15/express-notify
