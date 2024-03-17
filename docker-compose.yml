@@ -1,0 +1,41 @@
+version: '3.5'
+services:
+  api01:
+    image: rafaelsantos15/express-notify:latest
+    hostname: api01
+    ports:
+      - '3000:3000'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '200MB'
+    networks:
+      - expressNotify
+    environment:
+      - USERNAME_EMAIL=
+      - PASSWORD_EMAIL=
+      - HOST_EMAIL=
+      - PORT_EMAIL=
+      - EMAIL_SERVICE=
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: '10MB'
+    ports:
+      - '9999:9999'
+    networks:
+      - expressNotify
+
+networks:
+  expressNotify:
+    driver: bridge

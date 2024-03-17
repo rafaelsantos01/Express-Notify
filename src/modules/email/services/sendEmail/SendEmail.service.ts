@@ -14,6 +14,7 @@ export class SendEmailService {
 
   async execute(data: RequestDTO, kafka?: false) {
     try {
+      console.log('Sending email...');
       await this.mailerService.sendMail({
         to: process.env.EMAIL_SERVICE,
         from: data.email,
